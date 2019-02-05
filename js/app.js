@@ -1,7 +1,8 @@
 // Enemies our player must avoid
-var Enemy = function() {
-  this.x = 0;
-  this.y = 60;
+var Enemy = function(x, y) {
+
+  this.x = x;
+  this.y = y;
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -64,9 +65,10 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [];
-const enemy1 = new Enemy();
-const enemy2 = new Enemy();
-const enemy3 = new Enemy();
+const enemy1 = new Enemy(0, 60);
+const enemy2 = new Enemy(101, 140);
+const enemy3 = new Enemy(380, 225);
+
 allEnemies.push.apply(allEnemies, [enemy1, enemy2, enemy3]);
 
 // Place the player object in a variable called player
