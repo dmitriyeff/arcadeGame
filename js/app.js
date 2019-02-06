@@ -34,17 +34,28 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 class Player {
-  constructor() {
+  constructor(x, y) {
     this.sprite = 'images/char-cat-girl.png';
-    this.x = 202;
-    this.y = 380;
+    this.x = x;
+    this.y = y;
   }
 
   update() {
+    // if player wins he goes to the starting position
     if (this.y === -20) {
       this.x = 202;
       this.y = 380;
+      alert('You won!');
     }
+    // check for collision
+    for (let Enemy of allEnemies) {
+      if (this.y === Enemy.y && (this.x + 50 > Enemy.x && this.x < Enemy.x + 50)) {
+        this.x = 202;
+        this.y = 380;
+      }
+      console.log(this.y, Enemy.y);
+    }
+
   }
 
   render() {
@@ -52,21 +63,19 @@ class Player {
   }
 
   handleInput(key) {
+    // handle Player
+    // Player can't go outside of the field
     if (key === 'left' && this.x > 0) {
       this.x -= 101;
-      console.log(player);
     }
     if (key === 'right' && this.x < 404) {
       this.x += 101;
-      console.log(player)
     }
     if (key === 'down' && this.y < 380) {
-      this.y += 80;
-      console.log(player);
+      this.y += 80;;
     }
     if (key === 'up' && this.y > -20) {
-      this.y -= 80;
-      console.log(player);
+      this.y -= 80;;
     }
   }
 }
@@ -74,16 +83,15 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [];
-const enemy1 = new Enemy(0, 60, 450);
+const enemy1 = new Enemy(0, 60, 500);
 const enemy2 = new Enemy(200, 140, 200);
-const enemy3 = new Enemy(380, 225, 200);
+const enemy3 = new Enemy(380, 220, 210);
 const enemy4 = new Enemy(0, 60, 150);
-const enemy5 = new Enemy(0, 225, 100);
 
 allEnemies.push.apply(allEnemies, [enemy1, enemy2, enemy3, enemy4]);
 
 // Place the player object in a variable called player
-const player = new Player();
+const player = new Player(202, 380);
 
 
 
