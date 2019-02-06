@@ -1,7 +1,8 @@
 // Enemies our player must avoid
-var Enemy = function(x, y) {
+var Enemy = function(x, y, speed) {
   this.x = x;
   this.y = y;
+  this.speed = speed;
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -13,7 +14,7 @@ var Enemy = function(x, y) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-  let distance = 300 * dt;
+  const distance = this.speed * dt;
   if (this.x > 606) {
     this.x = 0;
   } else {
@@ -73,11 +74,13 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [];
-const enemy1 = new Enemy(0, 60);
-const enemy2 = new Enemy(200, 140);
-const enemy3 = new Enemy(380, 225);
+const enemy1 = new Enemy(0, 60, 450);
+const enemy2 = new Enemy(200, 140, 200);
+const enemy3 = new Enemy(380, 225, 200);
+const enemy4 = new Enemy(0, 60, 150);
+const enemy5 = new Enemy(0, 225, 100);
 
-allEnemies.push.apply(allEnemies, [enemy1, enemy2, enemy3]);
+allEnemies.push.apply(allEnemies, [enemy1, enemy2, enemy3, enemy4]);
 
 // Place the player object in a variable called player
 const player = new Player();
