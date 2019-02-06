@@ -1,6 +1,5 @@
 // Enemies our player must avoid
 var Enemy = function(x, y) {
-
   this.x = x;
   this.y = y;
     // Variables applied to each of our instances go here,
@@ -14,6 +13,8 @@ var Enemy = function(x, y) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+  const distance = 300 * dt;
+  this.x += distance;
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -35,7 +36,10 @@ class Player {
   }
 
   update() {
-
+    if (this.y === -20) {
+      this.x = 202;
+      this.y = 380;
+    }
   }
 
   render() {
