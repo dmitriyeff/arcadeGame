@@ -1,4 +1,5 @@
 // Enemies our player must avoid
+"use strict";
 var Enemy = function(x, y, speed) {
   this.x = x;
   this.y = y;
@@ -41,21 +42,23 @@ class Player {
   }
 
   update() {
-    // if player wins he goes to the starting position
+
     if (this.y === -20) {
-      this.x = 202;
-      this.y = 380;
       alert('You won!');
+      this.reset();
     }
+
     // check for collision
     for (let Enemy of allEnemies) {
       if (this.y === Enemy.y && (this.x + 50 > Enemy.x && this.x < Enemy.x + 50)) {
-        this.x = 202;
-        this.y = 380;
+        this.reset();
       }
-      console.log(this.y, Enemy.y);
     }
-
+  }
+// reset Player to the starting position
+  reset() {
+      this.x = 202;
+      this.y = 380;
   }
 
   render() {
